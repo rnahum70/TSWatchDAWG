@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TSWatchDAWG</string>
+    <string-array name="tictypes">
+        <item>Vocal</item>
+        <item>Head</item>
+        <item>Face</item>
+        <item>Shoulder</item>
+        <item>Arm</item>
+        <item>Leg</item>
+    </string-array>
+
+
+</resources>

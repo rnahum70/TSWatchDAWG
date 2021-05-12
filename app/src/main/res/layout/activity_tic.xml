@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Tic">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tic Event Information "
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="30dp"/>
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tic Type "
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:textSize="20dp"/>
+
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/textViewID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tic Intensity 5"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="217dp"
+        android:textSize="20dp"
+        android:layout_marginTop="25dp"
+        />
+
+    <SeekBar
+        android:id="@+id/seekBarID"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:max="10"
+        android:progress="5"
+        android:scaleX="2"
+        android:scaleY="2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How are you feeling?"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="217dp"
+        android:textSize="20dp"
+        android:layout_marginTop="40dp"
+        />
+
+    <com.hsalf.smilerating.SmileRating
+        android:id="@+id/smile_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notes"
+        android:layout_gravity="center"
+        tools:layout_editor_absoluteX="178dp"
+        tools:layout_editor_absoluteY="217dp"
+        android:textSize="20dp"
+        android:layout_marginTop="25dp"
+        />
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/border" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:onClick="save"
+        android:text="save"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
+
+
+
