@@ -2,23 +2,27 @@ package com.example.tswatchdawg;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tswatchdawg.db.Symptom;
+import com.example.tswatchdawg.db.TicDatabase;
+
 import com.hsalf.smilerating.SmileRating;
 import android.widget.EditText;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 
 public class Tic extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -28,6 +32,7 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
 
     private static final String FILE_NAME = "example.txt";
     EditText mEditText;
+    Button buttonSave;
 
 
     @Override
@@ -97,6 +102,21 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
             }
         });
 
+        buttonSave = findViewById(R.id.buttonSave);
+
+
+        // Calculate Button
+        buttonSave.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String ticType = spinner.getSelectedItem().toString();
+
+                saveNewSymptom(ticType);
+
+            }
+
+        });
+
     }
 
     @Override
@@ -110,30 +130,43 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
 
     }
 
+//    public void save(View v) {
+//        String text = mEditText.getText().toString();
+//        FileOutputStream fos = null;
+//        try {
+//            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+//            fos.write(text.getBytes());
+//            mEditText.getText().clear();
+//            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILE_NAME,
+//                    Toast.LENGTH_LONG).show();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (fos != null) {
+//                try {
+//                    fos.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
-    public void save(View v) {
-        String text = mEditText.getText().toString();
-        FileOutputStream fos = null;
-        try {
-            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-            fos.write(text.getBytes());
-            mEditText.getText().clear();
-            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILE_NAME,
-                    Toast.LENGTH_LONG).show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+    private void saveNewSymptom(String ticType){
+        TicDatabase db = TicDatabase.getDbInstance(this.getApplicationContext());
+
+        Symptom symptom = new Symptom();
+        symptom.ticType = ticType;
+//        symptom.ticIntensity = ticIntensity;
+
+        db.userDao().insertSymptom(symptom);
+        finish();
+
     }
+
+
 
 
 

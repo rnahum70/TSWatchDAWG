@@ -1,6 +1,8 @@
 package com.example.tswatchdawg;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,7 @@ public class Data extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tvw.setText("Data: "+ picker.getDayOfMonth()+"/"+ (picker.getMonth() + 1)+"/"+picker.getYear());
+                //i = new Intent(this,Data.class);startActivity(i)
             }
         });
     }
