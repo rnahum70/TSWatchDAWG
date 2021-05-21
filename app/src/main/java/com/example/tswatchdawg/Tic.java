@@ -13,16 +13,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import com.example.tswatchdawg.db.Symptom;
 import com.example.tswatchdawg.db.TicDatabase;
 
 import com.hsalf.smilerating.SmileRating;
+import com.hsalf.smileyrating.SmileyRating;
+
 import android.widget.EditText;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.util.Date;
 
 
 public class Tic extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -109,9 +114,34 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
         buttonSave.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                //Time
+                SimpleDateFormat time_1 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss:SSS z");
+                String ticTime = time_1.format(new Date());
+
+                //Time Millis
+                Date date = null;
+                try {
+                    date = time_1.parse(ticTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long time_2 = date.getTime();
+                String ticTimeMillis = String.valueOf(time_2);
+
+
+                //Type
                 String ticType = spinner.getSelectedItem().toString();
 
-                saveNewSymptom(ticType);
+                //Intensity
+                String ticIntensity = String.valueOf(seekBar.getProgress());
+
+                //Feeling
+                String ticFeeling = String.valueOf(smileRating.getSelectedSmile());
+
+                //Notes
+                String ticNotes = mEditText.getText().toString();
+
+                saveNewSymptom(ticTime, ticTimeMillis, ticType, ticIntensity, ticFeeling, ticNotes);
 
             }
 
@@ -154,12 +184,16 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
 //        }
 //    }
 
-    private void saveNewSymptom(String ticType){
+    private void saveNewSymptom(String ticTime, String ticTimeMillis, String ticType, String ticIntensity, String ticFeeling, String ticNotes){
         TicDatabase db = TicDatabase.getDbInstance(this.getApplicationContext());
 
         Symptom symptom = new Symptom();
+        symptom.ticTime = ticTime;
+        symptom.ticTimeMillis = ticTimeMillis;
         symptom.ticType = ticType;
-//        symptom.ticIntensity = ticIntensity;
+        symptom.ticIntensity = ticIntensity;
+        symptom.ticFeeling = ticFeeling;
+        symptom.ticNotes = ticNotes;
 
         db.userDao().insertSymptom(symptom);
         finish();

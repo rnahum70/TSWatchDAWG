@@ -8,7 +8,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 // bump version number if your schema changes
-@Database(entities={Symptom.class}, version=1)
+@Database(
+        entities={Symptom.class},
+        version = 1
+)
+
 public abstract class TicDatabase extends RoomDatabase {
     // Declare your data access objects as abstract
     public abstract UserDao userDao();
