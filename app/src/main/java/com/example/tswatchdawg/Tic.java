@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +19,9 @@ import com.example.tswatchdawg.db.Symptom;
 import com.example.tswatchdawg.db.TicDatabase;
 
 import com.hsalf.smilerating.SmileRating;
-import com.hsalf.smileyrating.SmileyRating;
 
 import android.widget.EditText;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +32,6 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
     SeekBar seekBar;
     TextView textView;
 
-    private static final String FILE_NAME = "example.txt";
     EditText mEditText;
     Button buttonSave;
 
@@ -50,48 +43,36 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
 
         mEditText = findViewById(R.id.edit_text);
 
-        SmileRating smileRating = (SmileRating) findViewById(R.id.smile_rating);
-        smileRating.setOnSmileySelectionListener(new SmileRating.OnSmileySelectionListener() {
-            @Override
-            public void onSmileySelected(int smiley, boolean reselected) {
-                switch (smiley) {
-                    case SmileRating.BAD:
-                        Toast.makeText(Tic.this, "BAD", Toast.LENGTH_SHORT);
-                        break;
-                    case SmileRating.GOOD:
-                        Toast.makeText(Tic.this, "GOOD", Toast.LENGTH_SHORT);
-                        break;
-                    case SmileRating.GREAT:
-                        Toast.makeText(Tic.this, "GREAT", Toast.LENGTH_SHORT);
-                        break;
-                    case SmileRating.OKAY:
-                        Toast.makeText(Tic.this, "OKAY", Toast.LENGTH_SHORT);
-                        break;
-                    case SmileRating.TERRIBLE:
-                        Toast.makeText(Tic.this, "TERRIBLE", Toast.LENGTH_SHORT);
-                        break;
-                    case SmileRating.NONE:
-                        Toast.makeText(Tic.this, "NONE", Toast.LENGTH_SHORT);
-                        break;
-                }
+        SmileRating smileRating = findViewById(R.id.smile_rating);
+        smileRating.setOnSmileySelectionListener((smiley, reselected) -> {
+            switch (smiley) {
+                case SmileRating.BAD:
+                    Toast.makeText(Tic.this, "BAD", Toast.LENGTH_SHORT);
+                    break;
+                case SmileRating.GOOD:
+                    Toast.makeText(Tic.this, "GOOD", Toast.LENGTH_SHORT);
+                    break;
+                case SmileRating.GREAT:
+                    Toast.makeText(Tic.this, "GREAT", Toast.LENGTH_SHORT);
+                    break;
+                case SmileRating.OKAY:
+                    Toast.makeText(Tic.this, "OKAY", Toast.LENGTH_SHORT);
+                    break;
+                case SmileRating.TERRIBLE:
+                    Toast.makeText(Tic.this, "TERRIBLE", Toast.LENGTH_SHORT);
+                    break;
+                case SmileRating.NONE:
+                    Toast.makeText(Tic.this, "NONE", Toast.LENGTH_SHORT);
+                    break;
             }
         });
 
-        smileRating.setOnRatingSelectedListener(new SmileRating.OnRatingSelectedListener() {
-            @Override
-            public void onRatingSelected(int level, boolean reselected) {
-                Toast.makeText(Tic.this, "Selected rating" + level, Toast.LENGTH_SHORT);
-            }
+        smileRating.setOnRatingSelectedListener((level, reselected) -> {
+            Toast.makeText(Tic.this, "Selected rating" + level, Toast.LENGTH_SHORT)
         });
 
-//        Spinner spinner = findViewById(R.id.spinner1);
-//        ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(this, R.array.tictypes, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
-//        spinner.setOnItemSelectedListener(this);
-
-        seekBar= (SeekBar)findViewById(R.id.seekBarID);
-        textView= (TextView)findViewById(R.id.textViewID);
+        seekBar = findViewById(R.id.seekBarID);
+        textView = findViewById(R.id.textViewID);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
