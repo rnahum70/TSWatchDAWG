@@ -1,0 +1,70 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "e1688cd85dd0bbea594c641daff255bf",
+    "entities": [
+      {
+        "tableName": "Symptom",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`symptomId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `Tic Time` TEXT, `Tic Time Millis` TEXT, `Tic Type` TEXT, `Tic Intensity` TEXT, `Tic Feeling` TEXT, `Tic Notes` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "symptomId",
+            "columnName": "symptomId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ticTime",
+            "columnName": "Tic Time",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ticTimeMillis",
+            "columnName": "Tic Time Millis",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ticType",
+            "columnName": "Tic Type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ticIntensity",
+            "columnName": "Tic Intensity",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ticFeeling",
+            "columnName": "Tic Feeling",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ticNotes",
+            "columnName": "Tic Notes",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "symptomId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e1688cd85dd0bbea594c641daff255bf')"
+    ]
+  }
+}

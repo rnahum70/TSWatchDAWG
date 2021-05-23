@@ -29,12 +29,61 @@
         android:textSize="20dp" />
 
 
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="135dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <CheckBox android:id="@+id/checkbox_vocal"
+            android:gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="vocal"
+            android:button="@null"
+            android:drawableBottom="?android:attr/listChoiceIndicatorMultiple"
+            />
+        <CheckBox android:id="@+id/checkbox_head"
+            android:gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="head"
+            android:button="@null"
+            android:drawableBottom="?android:attr/listChoiceIndicatorMultiple"
+            />
+        <CheckBox android:id="@+id/checkbox_face"
+            android:gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="face"
+            android:button="@null"
+            android:drawableBottom="?android:attr/listChoiceIndicatorMultiple"
+            />
+        <CheckBox android:id="@+id/checkbox_shoulder"
+            android:gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="shoulder"
+            android:button="@null"
+            android:drawableBottom="?android:attr/listChoiceIndicatorMultiple"
+            />
+        <CheckBox android:id="@+id/checkbox_arm"
+            android:gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="arm"
+            android:button="@null"
+            android:drawableBottom="?android:attr/listChoiceIndicatorMultiple"
+            />
+        <CheckBox android:id="@+id/checkbox_leg"
+            android:gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="leg"
+            android:button="@null"
+            android:drawableBottom="?android:attr/listChoiceIndicatorMultiple"
+            />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/textViewID"
@@ -91,7 +140,9 @@
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="69dp"
-        android:background="@drawable/border" />
+        android:background="@drawable/border"
+        android:textColor="@color/black"
+        />
 
     <Button
         android:id="@+id/buttonSave"

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,7 +28,9 @@ import android.widget.EditText;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Tic extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -81,11 +84,11 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
             }
         });
 
-        Spinner spinner = findViewById(R.id.spinner1);
-        ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(this, R.array.tictypes, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+//        Spinner spinner = findViewById(R.id.spinner1);
+//        ArrayAdapter<CharSequence> adapter= ArrayAdapter.createFromResource(this, R.array.tictypes, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(this);
 
         seekBar= (SeekBar)findViewById(R.id.seekBarID);
         textView= (TextView)findViewById(R.id.textViewID);
@@ -130,7 +133,21 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
 
 
                 //Type
-                String ticType = spinner.getSelectedItem().toString();
+                boolean type_vocal = ((CheckBox) findViewById(R.id.checkbox_vocal)).isChecked();
+                boolean type_head = ((CheckBox) findViewById(R.id.checkbox_head)).isChecked();
+                boolean type_face = ((CheckBox) findViewById(R.id.checkbox_face)).isChecked();
+                boolean type_shoulder = ((CheckBox) findViewById(R.id.checkbox_shoulder)).isChecked();
+                boolean type_arm = ((CheckBox) findViewById(R.id.checkbox_arm)).isChecked();
+                boolean type_leg = ((CheckBox) findViewById(R.id.checkbox_leg)).isChecked();
+
+                List<String> checkedTypes = new ArrayList<>();
+                if (type_vocal) checkedTypes.add("Vocal");
+                if (type_head) checkedTypes.add("Head");
+                if (type_face) checkedTypes.add("Face");
+                if (type_shoulder) checkedTypes.add("Shoulder");
+                if (type_arm) checkedTypes.add("Arm");
+                if (type_leg) checkedTypes.add("Leg");
+                String ticType = android.text.TextUtils.join(",", checkedTypes);
 
                 //Intensity
                 String ticIntensity = String.valueOf(seekBar.getProgress());
