@@ -68,7 +68,7 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
         });
 
         smileRating.setOnRatingSelectedListener((level, reselected) -> {
-            Toast.makeText(Tic.this, "Selected rating" + level, Toast.LENGTH_SHORT)
+            Toast.makeText(Tic.this, "Selected rating" + level, Toast.LENGTH_SHORT);
         });
 
         seekBar = findViewById(R.id.seekBarID);
@@ -109,9 +109,8 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                long time_2 = date.getTime();
-                String ticTimeMillis = String.valueOf(time_2);
-
+                long timeMillis = date.getTime();
+                String ticTimeMillis = String.valueOf(timeMillis);
 
                 //Type
                 boolean type_vocal = ((CheckBox) findViewById(R.id.checkbox_vocal)).isChecked();
@@ -128,7 +127,7 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
                 if (type_shoulder) checkedTypes.add("Shoulder");
                 if (type_arm) checkedTypes.add("Arm");
                 if (type_leg) checkedTypes.add("Leg");
-                String ticType = android.text.TextUtils.join(",", checkedTypes);
+                String ticType = android.text.TextUtils.join(", ", checkedTypes);
 
                 //Intensity
                 String ticIntensity = String.valueOf(seekBar.getProgress());
@@ -158,30 +157,6 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
 
     }
 
-//    public void save(View v) {
-//        String text = mEditText.getText().toString();
-//        FileOutputStream fos = null;
-//        try {
-//            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-//            fos.write(text.getBytes());
-//            mEditText.getText().clear();
-//            Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILE_NAME,
-//                    Toast.LENGTH_LONG).show();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (fos != null) {
-//                try {
-//                    fos.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-
     private void saveNewSymptom(String ticTime, String ticTimeMillis, String ticType, String ticIntensity, String ticFeeling, String ticNotes){
         TicDatabase db = TicDatabase.getDbInstance(this.getApplicationContext());
 
@@ -195,10 +170,7 @@ public class Tic extends AppCompatActivity implements AdapterView.OnItemSelected
 
         db.userDao().insertSymptom(symptom);
         finish();
-
     }
-
-
 
 
 

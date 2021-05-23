@@ -16,6 +16,10 @@ public interface UserDao {
     List<Symptom> getAllUsers();
     //public User getById(int id);
 
+    // TODO implement this (requires migration)
+//    @Query("SELECT * FROM Symptom WHERE TicTimeMillis BETWEEN :minTime AND :maxTime")
+//    public List<Symptom> loadAllUsersBetweenAges(long minTime, long maxTime);
+
 //    @Insert(onConflict = OnConflictStrategy.REPLACE)
 //    public Long insertUser(User user);
 
@@ -24,4 +28,6 @@ public interface UserDao {
 
     @Delete
     void deleteSymptom(Symptom symptom);
+
+
 }

@@ -13,6 +13,7 @@ import androidx.room.RoomDatabase;
         version = 1
 )
 
+
 public abstract class TicDatabase extends RoomDatabase {
     // Declare your data access objects as abstract
     public abstract UserDao userDao();
@@ -32,6 +33,9 @@ public abstract class TicDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
 }
+
+
 
 
